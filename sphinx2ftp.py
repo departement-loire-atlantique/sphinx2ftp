@@ -1,4 +1,4 @@
-import requests
+import urllib.parse
 from urllib.request import Request, urlopen
 from urllib.error import HTTPError
 import json
@@ -17,7 +17,13 @@ def sphinx_login(args):
     }
 
     try:
-        auth = json.loads(requests.post(api_auth, data=payload).content)
+        data = urllib.parse.urlencode(payload)
+        data = data.encode('ascii') # data should be bytes
+        req = Request(api_auth, data)
+        with urlopen(req) as response:
+            data = response.read()
+            encoding = response.info().get_content_charset('utf-8')
+            auth = json.loads(data.decode(encoding))
     except ValueError:
         raise Exception("sphinx_client_id is incorrect")
     if "access_token" not in auth:

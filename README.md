@@ -6,13 +6,11 @@ Ce script permet de récupérer tous les enregistrements d'un formulaire SPHINX 
 Installation
 ------------
 
-```
-pip install -r requirements.txt
-```
+Ce script nécessite Python 3. Testé avec la version 3.4.4. Aucun module python additionel n'est nécessaire.
 
 Execution
 ---------
 
 ```
-survey.py --sphinx_password xxx --sphinx_survey_id xxx --ftp_filename xxx --ftp_pass xxx
+python3 sphinx2ftp.py --sphinx_password xxx --sphinx_survey_id xxx --ftp_filename xxx --ftp_pass xxx
 ```
