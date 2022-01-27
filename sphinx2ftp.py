@@ -55,7 +55,7 @@ def sphinx_download_survey(auth, args, localfilename="dataset.csv"):
 def ftp_upload(args, localfilename="dataset.csv"):
     ftp = ftplib.FTP(args.ftp_url)
     print(ftp.login(args.ftp_login, args.ftp_pass))
-    ftp.set_pasv(False)
+    ftp.set_pasv(True)
     print(ftp.cwd(args.ftp_folder))
     with open(localfilename, "rb") as data_file:
         res = ftp.storlines("STOR " + args.ftp_filename, data_file)
